@@ -36,6 +36,7 @@ Se debe poder agregar un nuevo registro.
 
 - PHP ^7.3
 - MySQL ^5.7,
+- Composer ^2.1.6,
 
 ## Framework and libraries used
 
@@ -48,22 +49,27 @@ Se debe poder agregar un nuevo registro.
 ```
 cd backend/
 ```
+1. First create database and copy file .env.examplet to .env and add the database variables.
 
-1. First create database and add variables in the .env file.
+2. Install packages and dependencies
 
-2. Generate token secret
+```
+composer install
+```
+
+3. Generate token secret
 
 ```
 php artisan jwt:secret
 ```
 
-3. Run migrations and seeders
+4. Run migrations and seeders
 
 ```
 php artisan migrate:refresh --seed
 ```
 
-4. Run backend
+5. Run backend
 
 ```
 php -S localhost:8000 -t public
@@ -105,6 +111,12 @@ if this port is used, will run in another.
 
 Use the follow credentials to log in as a test user
 
+```
 Correo: test@gmail.com
 Password: 12345678
+```
 
+# Details of structure folders
+
+To see more details about the structure folder, enter to backend or frontend folder to see
+the internal readme.
