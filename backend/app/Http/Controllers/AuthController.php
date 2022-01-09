@@ -5,8 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+use App\Traits\ApiResponse;
+
 class AuthController extends Controller
 {
+    use ApiResponse;
+
     /**
      * Create a new controller instance.
      *
@@ -25,16 +29,16 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        //validate incoming request
+        // Validate request
         $this->validate($request, [
-            'email' => 'required|string',
-            'password' => 'required|string',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
 
         $credentials = $request->only(['email', 'password']);
 
         if (!$token = Auth::attempt($credentials)) {
-            return response()->json(['message' => 'Unauthorized'], 401);
+            return $this->errorResponse('Unauthorized', 401);
         }
 
         return $this->respondWithToken($token);

@@ -11,17 +11,16 @@ export class AuthGuard implements CanActivate {
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    console.log('auth guard executed');
 
     const isLoggedInUser = this.authenticationService.isLoggedIn();
 
     if (isLoggedInUser) {
-      console.log('AUTH GUARD PASSED: USER IS LOGGED IN');
-      console.log(isLoggedInUser);
+      // console.log('AUTH GUARD PASSED: USER IS LOGGED IN');
+      // console.log(isLoggedInUser);
       return true;
     }
 
-    console.log('NOT AUTH GUARD PASSED: USER IS NOT LOGGED IN');
+    // console.log('NOT AUTH GUARD PASSED: USER IS NOT LOGGED IN');
 
     // const currentUser = this.authenticationService.currentUser();
     // console.log('AUTH GUARD');

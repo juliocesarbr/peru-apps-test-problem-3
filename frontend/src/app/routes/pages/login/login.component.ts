@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
     this.authenticationService.logout();
 
     // get return url from route parameters or default to '/'
-    // tslint:disable-next-line: no-string-literal
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -67,14 +66,15 @@ export class LoginComponent implements OnInit {
     this.authenticationService.login(this.form.value.email, this.form.value.password)
       .subscribe(
         (data: any) => {
-          console.log('login(): --> response:', data);
           this.disableSubmitBtn = false;
           this.router.navigate([this.returnUrl]);
         },
         (httpError: any) => {
-          // console.log('login(): --> error:', httpError.error.error);
-          let errorResponse = httpError.error.error;
-          this.error = errorResponse.error;
+
+          if(httpError.status == 401){
+            this.error = 'Las credenciales de acceso no son correctas.';
+          }
+
           this.disableSubmitBtn = false;
         });
   }

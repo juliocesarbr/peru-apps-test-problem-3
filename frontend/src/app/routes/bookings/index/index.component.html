@@ -1,14 +1,26 @@
 <mat-card>
-  <form class="example-form">
+  <form [formGroup]="form" class="example-form">
     <mat-form-field class="input-m-right" appearance="fill">
       <mat-label>Filtrar por BookingId</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
+      <input formControlName="bookingId" matInput placeholder="Ej. 1" (change)="submit()">
     </mat-form-field>
 
     <mat-form-field class="input-m-right" appearance="fill">
       <mat-label>Filtrar por precio</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
+      <input formControlName="bookingPrice" matInput placeholder="Ej. 20.00" (change)="submit()">
     </mat-form-field>
+
+    <mat-form-field class="input-m-right" appearance="fill" *ngIf="this.form.get('bookingPrice').value" (change)="submit()">
+      <mat-label>Donde precio es</mat-label>
+      <select matNativeControl formControlName="wherePrice">
+        <option value="minor_equal">Menor o igual</option>
+        <option value="mayor_equal">Mayor o igual</option>
+      </select>
+    </mat-form-field>
+
+    <button type="button" (click)="cleanFilters()" class="input-m-right" mat-fab color="warn" aria-label="Borrar filtros">
+      <mat-icon>clear</mat-icon>
+    </button>
 
     <a [routerLink]="['/bookings/create']" mat-flat-button color="primary">CREAR BOOKING</a>
 

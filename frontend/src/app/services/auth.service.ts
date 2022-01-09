@@ -49,15 +49,14 @@ export class AuthenticationService {
           .pipe(
             map(response => {
               // login successful if there's a jwt token in the response
-              console.log('SUCCESSFULLY LOGGED IN ==============================');
-              console.log('AuthenticationService: --> login(): --> response', response);
+              // console.log('SUCCESSFULLY LOGGED IN ==============================');
+              // console.log('AuthenticationService: --> login(): --> response', response);
 
-              // Save in id and token in Local Storage
-              localStorage.setItem('id', response.id);
+              // Save token in Local Storage
               localStorage.setItem('token', response.token);
 
               this.token = response.token;
-              this.user = JSON.stringify(response.data);
+              // this.user = JSON.stringify(response.data);
 
               return response;
             })
@@ -73,7 +72,6 @@ export class AuthenticationService {
         // this.cookieService.deleteCookie('currentUser');
         this.token = null;
         localStorage.removeItem('token');
-        localStorage.removeItem('id');
     }
 }
 

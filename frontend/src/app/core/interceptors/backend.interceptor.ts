@@ -27,7 +27,7 @@ export class BackendInterceptor implements HttpInterceptor {
       // console.log('Backend Interceptor...');
 
       // GET TOKEN
-      console.log(localStorage.getItem('token'));
+      // console.log(localStorage.getItem('token'));
       const token = localStorage.getItem('token');
       this.authorization = token !== null ? token : '';
 

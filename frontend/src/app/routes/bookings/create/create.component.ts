@@ -43,11 +43,11 @@ export class CreateComponent implements OnInit {
     // Stop here if form is invalid
     if (this.form.invalid) {
       this.disableBtn = false;
-      console.log('onSubmit(): invalid form');
+      // console.log('onSubmit(): invalid form');
       return;
     }
 
-    console.log('onSubmit(): valid form');
+    // console.log('onSubmit(): valid form');
     this.store();
   }
 
@@ -56,7 +56,6 @@ export class CreateComponent implements OnInit {
     this.bookingService.store(this.form.value)
     .subscribe(
       (response: any) => {
-        console.log('store(): --> response:', response);
         this.disableBtn = false;
         this.submitted = false;
 
@@ -64,11 +63,33 @@ export class CreateComponent implements OnInit {
         this.router.navigate(['/bookings/']);
       },
       (error: any) => {
-        console.log('store(): --> error:', error);
         this.submitted = false;
         this.disableBtn = false;
+
+        // If error from backend is 422
+        // set error to each input that belongs
+        if (error.status === 422) {
+          this.setValidationErrors(error.error);
+        }
       }
     );
+  }
+
+  /**
+   * Function that iterate errores from backend and
+   * set to each form input.
+   *
+   * @param validationServerErrors
+   */
+  setValidationErrors(validationServerErrors: any) {
+    Object.keys(validationServerErrors).forEach(prop => {
+      const formControl = this.form.get(prop);
+      if (formControl) {
+        formControl.setErrors({
+          serverError: validationServerErrors[prop]
+        });
+      }
+    });
   }
 
 }

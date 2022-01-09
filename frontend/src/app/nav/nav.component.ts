@@ -28,9 +28,9 @@ export class NavComponent {
     ) {}
 
   logout() {
-    console.log('Logout');
     this.authenticationService.logout();
-    // this.router.navigate(['/check-key'], { queryParams: { returnUrl: '/' } });
+    // Redirect to login after logout user
+    this.router.navigate(['/login'], { queryParams: { returnUrl: '/' } });
   }
 
 }

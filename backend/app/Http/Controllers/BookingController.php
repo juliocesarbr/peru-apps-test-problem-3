@@ -22,7 +22,10 @@ class BookingController extends Controller
 
     public function index(Request $request)
     {
-        $bookings = Booking::get();
+        $bookings = Booking::
+                        byId($request->get('bookingId'))
+                        ->byPrice($request->get('bookingPrice'), $request->get('wherePrice'))
+                        ->get();
 
         return $this->successResponse($bookings);
     }
@@ -33,9 +36,9 @@ class BookingController extends Controller
         $this->validate($request, [
             'firstName' => 'required|string',
             'lastName' => 'required|string',
-            'bookingTime' => 'required',
+            'bookingTime' => 'required|date',
             'streetAddress' => 'required|string',
-            'bookingPrice' => 'required',
+            'bookingPrice' => 'required|numeric|between:0,99999999999999999999.99|min:0',
         ]);
 
         $booking = new Booking();
