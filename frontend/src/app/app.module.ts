@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { RoutesModule } from './routes/routes.module';
-import { DashboardModule } from './routes/dashboard/dashboard.module';
+
 import { NavModule } from './nav/nav.module'
 
 const routes: Routes = [ ];
@@ -20,7 +20,6 @@ const routes: Routes = [ ];
   imports: [
     BrowserModule,
     AppRoutingModule,
-    DashboardModule,
     BrowserAnimationsModule,
     SharedModule.forRoot(),
     HttpClientModule,
