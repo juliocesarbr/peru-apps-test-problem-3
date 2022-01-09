@@ -2,6 +2,7 @@
 
 ## Basics of project structure folder
 
+```
 .
 ├── app
 |   |── Http
@@ -13,3 +14,4 @@
 ├── database                # Migrations, seeders and factories of application
 ├── routes                  # Routes of application
 └── ...
+```

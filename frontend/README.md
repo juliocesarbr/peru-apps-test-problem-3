@@ -2,6 +2,7 @@
 
 ## Basics of project structure folder
 
+```
 .
 ├── src
 |   |── app
@@ -13,3 +14,4 @@
 |       |── services        # Services of application
 |       |── shared          # Shared modules of application
 └── ...
+```
