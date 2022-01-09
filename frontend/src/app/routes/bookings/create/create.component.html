@@ -1,0 +1,37 @@
+<div class="form-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill" class="input-m-right">
+      <input formControlName="firstName" matInput placeholder="Nombre de Cliente">
+      <mat-error *ngIf="form.get('firstName').errors && form.get('firstName').errors.required">Campo obligatorio</mat-error>
+      <mat-error *ngIf="form.get('firstName').errors && form.get('firstName').errors.serverError">{{ form.get('firstName').errors.serverError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-m-right">
+      <input formControlName="lastName" matInput placeholder="Apellido de Cliente">
+      <mat-error *ngIf="form.get('lastName').errors && form.get('lastName').errors.required">Campo obligatorio</mat-error>
+      <mat-error *ngIf="form.get('lastName').errors && form.get('lastName').errors.serverError">{{ form.get('lastName').errors.serverError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-m-right">
+      <input type="datetime-local" formControlName="bookingTime" matInput placeholder="Fecha de Booking">
+      <mat-error *ngIf="form.get('bookingTime').errors && form.get('bookingTime').errors.required">Campo obligatorio</mat-error>
+      <mat-error *ngIf="form.get('bookingTime').errors && form.get('bookingTime').errors.serverError">{{ form.get('bookingTime').errors.serverError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-m-right">
+      <input formControlName="bookingPrice" matInput placeholder="Precio">
+      <mat-error *ngIf="form.get('bookingPrice').errors && form.get('bookingPrice').errors.required">Campo obligatorio</mat-error>
+      <mat-error *ngIf="form.get('bookingPrice').errors && form.get('bookingPrice').errors.serverError">{{ form.get('bookingPrice').errors.serverError }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="input-m-right">
+      <textarea formControlName="streetAddress" matInput placeholder="Dirección"></textarea>
+      <mat-error *ngIf="form.get('streetAddress').errors && form.get('streetAddress').errors.required">Campo obligatorio</mat-error>
+      <mat-error *ngIf="form.get('streetAddress').errors && form.get('streetAddress').errors.serverError">{{ form.get('streetAddress').errors.serverError }}</mat-error>
+    </mat-form-field>
+
+
+    <button type="submit" mat-flat-button color="primary">CREAR BOOKING</button>
+  </form>
+</div>
