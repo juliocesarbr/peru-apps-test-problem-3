@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Booking;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,5 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class
         ]);
+
+        Booking::factory()
+            ->count(5)
+            ->create();
     }
 }
